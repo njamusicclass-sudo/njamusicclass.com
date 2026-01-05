@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abhisek Ghosh — Live</title>
+  <meta name="description" content="Official artist website of Abhisek Ghosh — music, performances, teaching, and philosophy." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --fg: #f5f5f5;
+      --muted: #9a9a9a;
+      --accent: #cfae70;
+      --transition: 0.4s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/hero.jpg') center/cover fixed no-repeat;
+      color: var(--fg);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,.6), transparent);
+      z-index: 100;
+    }
+
+    nav a {
+      color: var(--fg);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.9rem;
+      transition: color var(--transition);
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      max-width: 650px;
+      margin: 1rem auto;
+      color: var(--muted);
+    }
+
+    .accent { color: var(--accent); }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
+      border: 1px solid var(--accent);
+      color: var(--fg);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: all var(--transition);
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: url('images/hero.jpg') center/cover no-repeat fixed;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    header > div {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 2rem;
+      border-radius: 8px;
+      animation: fadeUp 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    section { padding: 6rem 2rem; text-align: center; }
+
+    .flex-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .flex-section img {
+      max-width: 300px;
+      border-radius: 8px;
+      flex: 1;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .flex-section img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(255,215,112,0.3);
+    }
+
+    .flex-section div { flex: 2; max-width: 600px; }
+
+    .about-text {
+      font-family: 'Playfair Display', serif;
+      max-width: 620px;
+      margin: 1rem auto;
+      line-height: 1.9;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    @media (max-width: 600px) {
+      .about-text { text-align: center; }
+    }
+
+    .philosophy { max-width: 800px; margin: 0 auto; }
+    .philosophy-entry {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      line-height: 2;
+      color: var(--fg);
+      margin: 3rem auto;
+      max-width: 650px;
+      text-align: center;
+    }
+    .philosophy-entry span {
+      display: block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    .music-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .music-item {
+      max-width: 250px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+
+    .music-item img { width: 100%; border-radius: 8px; }
+
+    .music-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(255,215,112,0.3);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 35px rgba(255,215,112,0.3);
+    }
+
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .fade-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Social Sidebar */
+    .social-sidebar {
+      position: fixed;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: 9999;
+    }
+
+    .social-sidebar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.6);
+      border-radius: 50%;
+      color: var(--fg);
+      transition: all 0.3s ease;
+    }
+
+    .social-sidebar a:hover {
+      background: var(--accent);
+      color: #000;
+      transform: translateX(4px) scale(1.1);
+    }
+
+    .social-sidebar svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .social-sidebar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div>Abhisek Ghosh</div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#music">Music</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Social Sidebar -->
+<div class="social-sidebar">
+  <a href="https://open.spotify.com/artist/2T7dSBuc8OqAuxsZQQqm8y?si=TYy_lo2rTmirm-cSM1CeDw" target="_blank" aria-label="Spotify">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 168" fill="currentColor" width="20" height="20">
+    <path d="M84 0a84 84 0 1084 84A84 84 0 0084 0zm38.45 121.9a4.9 4.9 0 01-6.7 1.6c-18.3-11.2-41.3-13.7-68.5-7.2a4.9 4.9 0 11-2.1-9.6c29.8-6.3 55.1-4 75.7 8.1a4.9 4.9 0 011.6 6.7zm9.7-22.3a6.1 6.1 0 01-8.3 2c-21.1-13-53.2-16.8-78.1-8.8a6.1 6.1 0 11-2.6-11.9c27.6-7.4 63-3.3 87 10.3a6.1 6.1 0 012 8.4zm0-23.3c-25.5-15.1-67.7-16.5-90.7-8.6a7.2 7.2 0 11-3.1-14.1c26.6-5.8 73-4 101 10.1a7.2 7.2 0 11-7.2 12.6z"/>
+  </svg>
+  </a>
+  <a href="https://music.apple.com/us/artist/abhisek-ghosh/1593711036" target="_blank" aria-label="Apple Music">
+    <svg data-lucide="music"></svg>
+  </a>
+  <a href="https://www.youtube.com/@ABHISEK854" target="_blank" aria-label="YouTube">
+    <svg data-lucide="youtube"></svg>
+  </a>
+  <a href="https://www.instagram.com/abhisekghosh44/" target="_blank" aria-label="Instagram">
+    <svg data-lucide="instagram"></svg>
+  </a>
+  <a href="https://www.facebook.com/profile.php?id=100075712313947" target="_blank" aria-label="Facebook">
+    <svg data-lucide="facebook"></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/abhisek-ghosh-52a54980/" target="_blank" aria-label="LinkedIn">
+    <svg data-lucide="linkedin"></svg>
+  </a>
+</div>
+
+<!-- Hero Header -->
+<header>
+  <div>
+    <h1>Music as <span class="accent">Presence</span></h1>
+    <p>Voice. Devotion. Creation.<br>Live performances, teaching, and sound as a living practice.</p>
+    <a href="#music" class="btn">Enter</a>
+  </div>
+</header>
+
+<!-- About Section -->
+<section id="about" class="flex-section fade-on-scroll">
+  <img src="images/Abhisek 20SS.jpg" alt="Abhisek Ghosh">
+  <div>
+    <h2>About</h2>
+    <p class="about-text">
+      Abhisek Ghosh is a Pop artist whose music blends Indian classical nuances,
+      Bengali melodies, and Western Rock & Pop energy. As a songwriter, composer,
+      and producer, he crafts performances that leave lasting emotional impressions.
+      <br><br>
+      From conducting 1000 instrumentalists at the 2016 World Cultural Festival in
+      Delhi to live radio performances with All India Radio, Abhisek’s work bridges
+      tradition and contemporary sound.
+      <br><br>
+      A Berklee College of Music graduate with a Master’s in Contemporary Performance,
+      he continues to explore music that resonates deeply, creating moments of
+      presence and connection for every listener.
+    </p>
+  </div>
+</section>
+
+<!-- Philosophy Section -->
+<section id="philosophy" class="fade-on-scroll">
+  <h2>Philosophy</h2>
+  <div class="philosophy">
+    <div class="philosophy-entry">
+      Music is not something I perform.<br>
+      It is something I enter.
+      <span>— on presence</span>
+    </div>
+    <div class="philosophy-entry">
+      Technique gives the body confidence.<br>
+      Silence gives the music permission.
+      <span>— notes from practice</span>
+    </div>
+    <div class="philosophy-entry">
+      When sound is honest,<br>
+      the listener recognizes themselves.
+      <span>— reflections</span>
+    </div>
+  </div>
+</section>
+
+<!-- Music Section -->
+<section id="music" class="fade-on-scroll">
+  <h2>Music & Performances</h2>
+  <p>Live concerts, studio work, collaborative projects, and curated experiences. Sound as a space of attention.</p>
+  <div class="music-gallery">
+    <div class="music-item">
+      <img src="images/RISE Poster2.jpg" alt="Album 1">
+      <p>Album / RISE</p>
+      <a href="https://youtu.be/x-Zm_5buvbU?si=maNb6MJoySJeVTsq" class="btn">Listen</a>
+    </div>
+    <div class="music-item">
+      <img src="images/POR.jpg" alt="Album 2">
+      <p>Album / Pocket of Regrets</p>
+      <a href="https://youtu.be/KJr4HHavay4?si=nW48MOo1TuLsYR4f" class="btn">Listen</a>
+    </div>
+    <div class="music-item">
+      <img src="images/Mora Saiyaan.jpg" alt="Album 3">
+      <p>Album / Mora Saiyaan</p>
+      <a href="https://youtu.be/RBldXc7x05k?si=W9UO1b25KPMyEwsz" class="btn">Listen</a>
+    </div>
+  </div>
+  <a href="#contact" class="btn" style="margin-top: 2rem;">Bookings</a>
+</section>
+
+<!-- Teaching Section -->
+<section id="teaching" class="flex-section fade-on-scroll">
+  <img src="images/teaching.jpg" alt="Teaching">
+  <div>
+    <h2>Teaching</h2>
+    <p>Voice, creativity, and musical presence. Classes rooted in technique, awareness, and expression.</p>
+    <a href="https://njamusicclass.com" class="btn">Music Classes</a>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="fade-on-scroll">
+  <h2>Gallery</h2>
+  <div class="gallery-grid">
+    <img src="images/gallery1.jpg" alt="Live performance">
+    <img src="images/gallery2.jpg" alt="Studio session">
+    <img src="images/gallery3.jpg" alt="Teaching">
+    <img src="images/gallery4.jpg" alt="Collaboration">
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="fade-on-scroll">
+  <h2>Contact</h2>
+  <p>For performances, collaborations, or classes.</p>
+  <p class="accent">contact@abhisekghosh.live</p>
+</section>
+
+<footer>
+  © <span id="year"></span> Abhisek Ghosh · All Rights Reserved
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const faders = document.querySelectorAll('.fade-on-scroll');
+  const observerOptions = { threshold: 0.2 };
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  faders.forEach(fader => appearOnScroll.observe(fader));
+
+  // Initialize lucide icons
+  window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
+</script>
+
+</body>
+</html>
